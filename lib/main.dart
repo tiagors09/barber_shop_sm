@@ -55,10 +55,6 @@ class _MyAppState extends State<MyApp> {
           onChangeScreen: _onChangeScreen,
           tabs: _tabs,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
       ),
     );
   }
