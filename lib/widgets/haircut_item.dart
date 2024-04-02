@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import '../models/haircut.dart';
 import 'package:flutter/material.dart';
 
@@ -12,16 +14,21 @@ class HaircutItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
+      margin: const EdgeInsets.only(left: 24, right: 24, bottom: 8),
       child: Column(
         children: [
           Stack(
             children: [
-              Image.network(
-                haircut.imageUrl,
-                height: 450,
-                width: double.infinity,
-                fit: BoxFit.fill,
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15)),
+                child: Image.network(
+                  haircut.imageUrl,
+                  height: MediaQuery.of(context).size.height * 0.40,
+                  width: double.infinity,
+                  fit: BoxFit.fill,
+                ),
               ),
               Positioned(
                 bottom: 20,
