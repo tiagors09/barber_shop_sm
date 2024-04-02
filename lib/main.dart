@@ -47,10 +47,17 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Barber Shop SM'),
+        ),
         body: _screens[_screenIndex],
         bottomNavigationBar: TabsNav(
           onChangeScreen: _onChangeScreen,
           tabs: _tabs,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
         ),
       ),
     );
