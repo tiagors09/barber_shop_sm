@@ -1,3 +1,4 @@
+import 'package:barber_shop_sm/screens/haircuts_screen.dart';
 import 'package:barber_shop_sm/widgets/tabs_nav.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   ];
 
   final _screens = [
-    const Center(child: Text('Teste 1')),
+    const HaircutsScreen(),
     const Center(child: Text('Teste 2')),
     const Center(child: Text('Teste 3')),
   ];
