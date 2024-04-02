@@ -9,14 +9,9 @@ class HaircutsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var haircuts = dummyData;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      child: Expanded(
-        child: ListView.builder(
-          itemCount: haircuts.length,
-          itemBuilder: (ctx, i) => HaircutItem(haircut: haircuts[i]),
-        ),
-      ),
+    return ListView.builder(
+      itemCount: haircuts.length,
+      itemBuilder: (ctx, i) => HaircutItem(haircut: haircuts[i]),
     );
   }
 }
