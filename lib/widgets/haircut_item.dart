@@ -12,13 +12,14 @@ class HaircutItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
           Stack(
             children: [
               Image.network(
                 haircut.imageUrl,
-                height: 250,
+                height: 450,
                 width: double.infinity,
                 fit: BoxFit.fill,
               ),
@@ -39,14 +40,18 @@ class HaircutItem extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              const Icon(Icons.attach_money),
-              Container(
-                margin: const EdgeInsets.only(left: 8),
-                child: Text(haircut.price.toString()),
-              )
-            ],
+          Container(
+            margin: const EdgeInsets.all(8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.attach_money),
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  child: Text(haircut.price.toString()),
+                )
+              ],
+            ),
           ),
         ],
       ),
