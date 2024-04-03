@@ -1,4 +1,6 @@
+import 'package:barber_shop_sm/models/order.dart';
 import 'package:barber_shop_sm/screens/haircuts_screen.dart';
+import 'package:barber_shop_sm/screens/orders_screen.dart';
 import 'package:barber_shop_sm/widgets/tabs_nav.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _screenIndex = 0;
+  List<Order> orders = [];
 
   final List<BottomNavigationBarItem> _tabs = [
     const BottomNavigationBarItem(
@@ -31,9 +34,26 @@ class _MyAppState extends State<MyApp> {
     ),
   ];
 
-  final _screens = [
-    const HaircutsScreen(),
-    const Center(child: Text('Teste 2')),
+  _addOrder(Order order) {
+    setState(() {
+      orders.add(order);
+    });
+  }
+
+  _removeOrders(int index) {
+    setState(() {
+      orders.removeAt(index);
+    });
+  }
+
+  late final _screens = [
+    HaircutsScreen(
+      onAddOrder: _addOrder,
+    ),
+    OrdersScreen(
+      orders: orders,
+      onRemoveOrder: _removeOrders,
+    ),
     const Center(child: Text('Teste 3')),
   ];
 
