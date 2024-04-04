@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:barber_shop_sm/models/haircut.dart';
 import 'package:barber_shop_sm/models/order.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ class HaircutForm extends StatefulWidget {
 }
 
 class _HaircutFormState extends State<HaircutForm> {
-  var haircutCout = 1;
+  var haircutCount = 1;
   var date = DateTime.now();
 
   _onPressed(BuildContext ctx) {
@@ -33,7 +35,7 @@ class _HaircutFormState extends State<HaircutForm> {
 
   @override
   Widget build(BuildContext context) {
-    var total = haircutCout * widget.haircut.price;
+    var total = haircutCount * widget.haircut.price;
 
     const textStyle = TextStyle(
       fontSize: 25,
@@ -53,38 +55,26 @@ class _HaircutFormState extends State<HaircutForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      haircutCount++;
+                    });
+                  },
+                  icon: const Icon(Icons.add)),
               Text(
-                widget.haircut.description,
+                '$haircutCount ${widget.haircut.description}',
                 style: textStyle,
               ),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if (haircutCout > 1) {
-                          haircutCout--;
-                        }
-                      });
-                    },
-                    icon: const Icon(Icons.exposure_minus_1),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Text(
-                      '$haircutCout corte${haircutCout > 1 ? 's' : ''}',
-                      style: textStyle,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        haircutCout++;
-                      });
-                    },
-                    icon: const Icon(Icons.plus_one),
-                  ),
-                ],
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    if (haircutCount > 1) {
+                      haircutCount--;
+                    }
+                  });
+                },
+                icon: const Icon(Icons.remove),
               ),
             ],
           ),
@@ -122,7 +112,11 @@ class _HaircutFormState extends State<HaircutForm> {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop(
-                Order(haircut: widget.haircut, time: date, total: total),
+                Order(
+                    id: Random().nextDouble().toString(),
+                    haircut: widget.haircut,
+                    time: date,
+                    total: total),
               );
             },
             child: const Text('Agendar'),
