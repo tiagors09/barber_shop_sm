@@ -40,9 +40,9 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  _removeOrders(int index) {
+  _removeOrders(int id) {
     setState(() {
-      orders.removeAt(index);
+      orders.removeWhere((order) => order.id == id);
     });
   }
 
